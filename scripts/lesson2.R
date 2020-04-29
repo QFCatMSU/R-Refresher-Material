@@ -31,6 +31,11 @@
   sdHighTemps = sd(highTemps);
   varHighTemps = var(highTemps); 
 
+  # test the sd and var using powers
+  varAlt = sdHighTemps^2;
+  sdAlt = varHighTemps^(1/2);
+  sdAlt2 = sqrt(varHighTemps);
+  
   # save a single quantile value
   q67HighTemp = quantile(highTemps, probs=0.67);
   

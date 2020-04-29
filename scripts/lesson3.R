@@ -16,17 +16,17 @@
   ### create a copy of precip2 
   precip2 = precip;
   
-  # Finding the "T" values in precip22, the days the had a trace of rain 
+  # Finding the "T" values in precip2, the days the had a trace of rain 
   traceIndex = which(precip2 == "T"); 
   precip2[traceIndex] = 0.005;   # give a numeric value for "T"
-  precip2 = as.numeric(precip2);  # change precip22 to a numeric vector 
+  precip2 = as.numeric(precip2);  # change precip2 to a numeric vector 
 
   # indexing between vectors
   heavyRainIndex = which(precip2 > 1);
   heavyRainDates = date[heavyRainIndex];
   heavyRainHum = humidity[heavyRainIndex];
 
-  #### Scatterplot of humidity vs. precip2itation with regression line  
+  #### Scatterplot of humidity vs. precipitation with regression line  
   plot1 = ggplot() +
     geom_point(mapping=aes(x=precip2, y=humidity)) +
     theme_bw() +
@@ -46,11 +46,10 @@
          y = "Count");
   plot(plot2);
 
-  #### Find days that have rain  
+  #### Find days that have rain (two different methods)
   hasRain = grep(weatherData$weatherType, pattern="RA");
   hasRain2 = grepl(weatherData$weatherType, pattern="RA");
 
-  
   #### Boxplot of humidity by rainy days
   plot3 = ggplot() +
     geom_boxplot(mapping=aes(x=hasRain2, y=humidity) ) +
