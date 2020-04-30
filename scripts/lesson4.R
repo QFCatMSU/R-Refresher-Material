@@ -1,9 +1,9 @@
 {
   rm(list=ls());  options(show.error.locations = TRUE);
 
-  lansingWeatherData = read.csv(file="data/LansingNOAA2016.csv", 
-                                header=TRUE,
-                                stringsAsFactors = FALSE);
+  weatherData = read.csv(file="data/LansingNOAA2016.csv", 
+                         header=TRUE,
+                         stringsAsFactors = FALSE);
   
   source("scripts/temperatureFunctions.r");
   
