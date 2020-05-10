@@ -1,61 +1,67 @@
 {
-  #### 1) convertFtoC function:
-  #    This function takes as input one fahrenheit value and
-  #    returns the converted Celsius value
-  convertFtoC = function(fTemp)
+  #### function convert1()
+  # Input: ftemp -- a Fahrenheit temperature
+  # Output: celTemp -- a Celsius Tempertaure
+  #    This function takes a Fahrenheit value and
+  #    converts in into a Celsius value
+  convert1 = function(fTemp)
   {
-    celTemp = ((5/9)*(fTemp -32));
+    celTemp = (5/9)*(fTemp-32);
     return(celTemp)
   }
   
-  #### 2) convertFandC function:
-  #    This function takes as input one temperature value and
-  #    a Boolean values that gives which direction the conversion
-  #    goes (default is F -> C).  
-  #    The function returns the converted temperature  
-  convertFandC = function(temp, toCelsius=TRUE)
+  #### function convert2()
+  # Inputs:temp -- a temperature value
+  #        toCelsius -- a Boolean value which determine the conversion
+  # Output: convertedTemp -- the value of the converted temperature
+  #    This function takes a temperature value and a Boolean values.  The function
+  #    converts the temperature from F to C if toCelsius is TRUE and converts
+  #    converts the temperature from C to F if toCelsius is FALSE
+  convert2 = function(temp, toCelsius=TRUE)
   {
     if(toCelsius == TRUE)
     {
-      convertedTemp = ((5/9)*(temp -32));
+      convertedTemp = (5/9)*(temp-32);
     }
-    else
+    else  # if(toCelsius == FALSE)
     {
-      convertedTemp = (( (9/5)*temp + 32 ));
+      convertedTemp = ((9/5)*temp+32);
     }
     return(convertedTemp);
   }
   
-  #### 3) convertFCK function:
-  #    This function takes as input one temperature value and
-  #    two strings values that give the conversion units (Fahrenheit,
-  #    Celsius, and Kelvin.  
-  #    The function returns the converted temperature   
-  convertFCK = function(temp, convertFrom, convertTo)
+  #### function convert3()
+  # Inputs:temp -- a temperature value
+  #        unitFrom -- the unit for the input temperature value
+  #        unitTo -- the unit for the return temperature value
+  #    This function takes a temperature value and converts it from
+  #    the unitFrom to the unitTo value.  The possible units are
+  #    Fahrenheit, Celsius, and Kelvin
+  convert3 = function(temp, unitFrom, unitTo)
   {
-    if(convertFrom == "C" && convertTo == "F")
+    if(unitFrom == "C" && unitTo == "F")
     {
-      convertedTemp = (( (9/5)*temp + 32 ));
+      convertedTemp = ((9/5)*temp + 32);
     }
-    else if(convertFrom == "C" && convertTo == "K")
+    else if(unitFrom == "C" && unitTo == "K")
     {
-      convertedTemp = convertedTemp + 273;
+      convertedTemp = temp + 273;
     }
-    else if(convertFrom == "F" && convertTo == "C")
+    else if(unitFrom == "F" && unitTo == "C")
     {
-      convertedTemp = ((5/9)*(temp -32));
+      convertedTemp = (5/9)*(temp -32);
     }
-    else if(convertFrom == "F" && convertTo == "K")
+    else if(unitFrom == "F" && unitTo == "K")
     {
-      convertedTemp = ((5/9)*( (temp+273) - 32));
+      convertedTemp = (5/9)*((temp+273)-32);
     }
-    else if(convertFrom == "K" && convertTo == "C")
+    else if(unitFrom == "K" && unitTo == "C")
     {
-      convertedTemp = convertedTemp - 273;
+      convertedTemp = temp - 273;
     }
-    else if(convertFrom == "K" && convertTo == "F")
+    else if(unitFrom == "K" && unitTo == "F")
     {
-      convertedTemp = (( (9/5)*(temp-273) + 32 ));
+      convertedTemp = ((9/5)*(temp-273)+32);
     }
     else # some error occurred
     {
@@ -65,40 +71,51 @@
   }
   
   
-  #### 4) convertFCK2 function:
-  #    This function is the same as the previous except that it
-  #    checks the first letter of the input
-  convertFCK2 = function(temp, convertFrom, convertTo)
+  #### function convert4()
+  # Inputs:temp -- a temperature value
+  #        unitFrom -- the unit for the input temperature value
+  #        unitTo -- the unit for the return temeprature value
+  #    This function takes a temperature value and converts it from
+  #    the unitFrom to the unitTo value.  The possible units are
+  #    Fahrenhiet, Celsius, and Kelvin.
+  convert4 = function(temp, unitFrom, unitTo)
   {
-    from = substr(convertFrom, start=1, stop=1);
-    to = substr(convertTo, start=1, stop=1);
+    # get the first character in the units 
+    from = substr(unitFrom, start=1, stop=1);
+    to = substr(unitTo, start=1, stop=1);
+    
+    # convert the first character to uppercase 
+    #   (it will do nothing if the character is already uppercase)
     from = toupper(from);
     to = toupper(to);
     
-    # assume they get the first letter right...
     if(from == "C" && to == "F")
     {
-      convertedTemp = (( (9/5)*temp + 32 ));
+      convertedTemp = ((9/5)*temp + 32);
     }
     else if(from == "C" && to == "K")
     {
-      convertedTemp = convertedTemp + 273;
+      convertedTemp = temp + 273;
     }
     else if(from == "F" && to == "C")
     {
-      convertedTemp = ((5/9)*(temp -32));
+      convertedTemp = (5/9)*(temp -32);
     }
     else if(from == "F" && to == "K")
     {
-      convertedTemp = ((5/9)*( (temp+273) - 32));
+      convertedTemp = (5/9)*((temp+273)-32);
     }
     else if(from == "K" && to == "C")
     {
-      convertedTemp = convertedTemp - 273;
+      convertedTemp = temp - 273;
     }
     else if(from == "K" && to == "F")
     {
-      convertedTemp = (( (9/5)*(temp-273) + 32 ));
+      convertedTemp = ((9/5)*(temp-273)+32);
+    }
+    else if(from == to) 
+    {
+      convertedTemp = temp;
     }
     else # some error occurred
     {

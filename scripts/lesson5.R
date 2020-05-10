@@ -1,5 +1,4 @@
 {
-  
   rm(list=ls());  options(show.error.locations = TRUE);
   
   lansingWeatherData = read.csv(file="data/LansingNOAA2016.csv", 
@@ -24,8 +23,8 @@
   # 3) Exclude days with trace of rain
   for(i in 1:nrow(lansingWeatherData))
   {
-    # if(lansingWeatherData$precip[i] != 0  && lansingWeatherData$precip[i] != "T" )
-    if(!(lansingWeatherData$precip[i] == 0  || lansingWeatherData$precip[i] == "T") )
+     if(lansingWeatherData$precip[i] != 0  && lansingWeatherData$precip[i] != "T" )
+#    if(!(lansingWeatherData$precip[i] == 0  || lansingWeatherData$precip[i] == "T") )
     {
       daysWithRain = daysWithRain +1;
     }
@@ -50,6 +49,28 @@
       else
       {
         nextDayNoRain = nextDayNoRain + 1;
+      }
+    }
+  } 
+  
+  # 4) IF there is rain then... 
+  nextDayRain = 0;
+  nextDayNoRain = 0;
+  
+  # Use prob matrix
+  for(i in 1:(nrow(lansingWeatherData)))
+  {
+    if(lansingWeatherData$precip[i] != 0  && 
+       lansingWeatherData$precip[i] != "T" )
+    {
+      if(lansingWeatherData$precip[i+1] != "0"  && 
+         lansingWeatherData$precip[i+1] != "T" )
+      {
+        probMat[1,1] = probMat[1,1] +1;
+      }
+      else
+      {
+        probMat[1,2] = probMat[1,2] +1;
       }
     }
   } 
