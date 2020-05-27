@@ -24,7 +24,7 @@
     cat(weatherData$date[i], ": ", weatherData$maxTemp[i], "\n");  
   }  
   
-  #### Iterate through the 365 precip values (for loop)
+  #### Iterate through the all precip values except the last (for loop)
   
   ### 2) First: check how many days had rain and did not have rain
   daysWithRain = 0;
